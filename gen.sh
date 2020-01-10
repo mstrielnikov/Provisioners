@@ -77,10 +77,10 @@ for id in {0..1000}
 		gen_owner_line $id >> "csv/owner.csv"
 	done
 
-#for t in *.sql
-#do
-#	mysql -u $USER < $t
-#done
-mysql -u $USER < sql/load_card.sql
+for t in sql/*.sql
+do
+	mysql -u $USER < $t
+done
+#mysql -u $USER < sql/load_card.sql
 
 exit 0;
