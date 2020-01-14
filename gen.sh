@@ -4,9 +4,10 @@ pool="qwertyuiopasdfghjklzxcvbnm"
 comma=";"
 db="bank"
 
+echo "" >  log.txt
+
 function gen_numeric {
-	! [[ $# -eq 1 ]] && echo "${FUNCNAME[0]}: wrong args" 
-	RANDOM=0
+	! [[ $# -eq 1 ]] && echo "${FUNCNAME[0]}: wrong args"
 	echo "$(( ( $RANDOM % $1 ) + 1 ))"
 }
 
@@ -19,18 +20,18 @@ function gen_alfa {
 
 
 function gen_card_line {
-	expiration_date="$(gen_numeric 2019)-$(gen_numeric 12)-$(gen_numeric 31)"
+	expiration_date="$(gen_numeric 2020)-$(gen_numeric 12)-$(gen_numeric 31)"
 	user_id="$(gen_numeric 1000)"
 	cvv="$(gen_numeric 999)"
-	echo "$1;$user_id;$cvv;$expiration_date"
+	echo "$1;${user_id};${cvv};${expiration_date};"
 }
 
 
 function gen_owner_line {
-	reg_date="$(gen_numeric 2019)-$(gen_numeric 12)-$(gen_numeric 31)"
+	reg_date="$(gen_numeric 2020)-$(gen_numeric 12)-$(gen_numeric 31)"
 	name="$(gen_alfa 5)"
 	family="$(gen_alfa 10)"
-	echo "$1;$name;$family;$reg_date"
+	echo "$1;${name};${family};${reg_date};"
 }
 
 
@@ -40,21 +41,31 @@ then
 		do	
 			head -n 1 $file > $file
 		done
+
+	for id in {0..1000}
+		do
+			echo "$(gen_card_line $id)" >> "csv/card.csv"
+		done
+
+	for id in {0..1000}
+		do
+			echo "$(gen_owner_line $id)" >> "csv/owner.csv"
+		done
+
+	for query in $(ls migration/v[0-9]/*.sql | sort)
+		do
+			mysql -u $USER < $query
+		done
+
+elif [[ "$1" -eq "-s" ]]
+then
+	for script in scripts/*.sql
+		do
+			if [[ -z $script ]]
+			then
+				mysql -u $USER < $query
+			fi
+		done
 fi
-
-for id in {0..1000}
-	do
-		gen_card_line $id >> "csv/card.csv"
-	done
-
-for id in {0..1000}
-	do
-		gen_owner_line $id >> "csv/owner.csv"
-	done
-
-for query in $(ls migration/v[0-9]/*.sql | sort)
-	do
-		mysql -u $USER < $query
-	done
 
 exit 0;
