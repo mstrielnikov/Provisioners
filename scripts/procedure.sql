@@ -1,0 +1,11 @@
+DELIMITER //
+
+CREATE PROCEDURE test_procedure()
+BEGIN
+
+END //
+DELIMITER;
+
+USE bank IF bank NOT IN SHOW FULL PROCESSLIST;
+
+CALL test_procedure();

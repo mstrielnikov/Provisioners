@@ -3,8 +3,7 @@
 pool="qwertyuiopasdfghjklzxcvbnm"
 comma=";"
 db="bank"
-
-echo "" >  log.txt
+log_file="log.txt"
 
 function gen_numeric {
 	! [[ $# -eq 1 ]] && echo "${FUNCNAME[0]}: wrong args"
@@ -35,6 +34,18 @@ function gen_owner_line {
 }
 
 
+function logging {
+	echo "$1"
+	! [[ -f "$log_file" ]] && touch $log_file
+	if [[ $(cat $log_file | wc -l) -gt 1 ]]
+	then
+		echo "$1" > $log_file
+	else
+		echo "$1" >> $log_file
+	fi
+}
+
+
 if [[ "$1" -eq "-r" ]]
 then
 	for file in csv/*.csv
@@ -54,7 +65,8 @@ then
 
 	for query in $(ls migration/v[0-9]/*.sql | sort)
 		do
-			mysql -u $USER < $query
+			logging "$(mysql -u $USER < $query)"
+
 		done
 
 elif [[ "$1" -eq "-s" ]]
@@ -63,7 +75,7 @@ then
 		do
 			if [[ -z $script ]]
 			then
-				mysql -u $USER < $query
+				logging "$(mysql -u $USER < $query)"
 			fi
 		done
 fi
