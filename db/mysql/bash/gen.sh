@@ -75,7 +75,7 @@ then
 		do
 			if [[ -z $script ]]
 			then
-				logging "$(mysql -u $USER < $query)"
+				logging "$(mysql -u $USER < $query $db)"
 			fi
 		done
 fi
