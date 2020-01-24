@@ -2,8 +2,8 @@
 
 - name: Deploy ssh keys
   hosts: all
-  vars:
-   - pub_rsa_key_file: resources/ssh/ansible.pub.pem
+  # vars:
+   # - pub_rsa_key_file: resources/ssh/ansible.pub.pem
     # - passwd: 3005
     # - deploy_user:
 
@@ -13,7 +13,7 @@
         hostname: '{{ inventory_hostname }}'
         username: root
         password: 3005
-        ssh_public_key: '{{ pub_rsa_key_file }}'
+        ssh_public_key: resources/ssh/ansible.pub.pem
         ssh_port: 22
 
   # tasks:
