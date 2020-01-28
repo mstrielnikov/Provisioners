@@ -1,0 +1,17 @@
+---
+
+timeout:
+   description: The amount of time in seconds to wait on an API response.
+   required: false
+   default: 60
+
+default_ip:
+   required: false
+   default: 127.0.0.1
+
+private_ssh_port:
+   description: The port containers use for SSH
+   required: true
+   default: 22
+
+...

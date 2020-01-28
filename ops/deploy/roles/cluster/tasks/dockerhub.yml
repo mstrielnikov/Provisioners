@@ -1,0 +1,11 @@
+---
+
+- hosts: containers
+  become: true
+  vars_files:
+    - vars/default.yml
+
+  tasks:
+    - include: tasks/create_container.yml
+
+...
