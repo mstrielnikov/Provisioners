@@ -1,0 +1,33 @@
+---
+
+- name: Pull default Docker image
+  docker_image:
+    name: "{{ default_container_image }}"
+    source: pull
+
+- name: Create default containers
+  docker_container:
+    name: "{{ default_container_name }}"
+    image: "{{ default_container_image }}"
+    pull: yes
+    state: present
+    restart_policy: on-failure
+    log_driver: syslog
+    # working_dir:
+    network_mode: host
+    exposed_ports:
+      - 22
+    networks:
+      ipv4_address: {{ item }}
+  loop: "{{ lookup('inventory_hostnames', 'containers', wantlist=True) }}"
+
+
+- name: Create dockerhub
+
+
+- name: Push to dockerhub
+
+
+- name: Kubernetes
+
+...

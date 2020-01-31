@@ -1,0 +1,7 @@
+
+
+  roles:
+    - role: cluster
+      vars:
+        cluster_type: docker #native, vagrant, wmware, dockerhub
+        managed_by: none #kubernetes, none

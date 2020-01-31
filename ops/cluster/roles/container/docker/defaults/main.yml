@@ -1,0 +1,9 @@
+---
+
+managed_by: none
+default_docker_prefix_name: docker
+default_dockerfile_path: ops/cluster/roles/container/docker/files/base.Dockerfile
+default_docker_host: 172.17.1.1
+default_inventory_path: ops/cluster/cluster_hosts.yml
+
+...

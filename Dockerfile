@@ -1,7 +1,10 @@
 FROM centos:latest
-RUN dnf install git python openssh-server openssh-clients
+ENV WORKDIR /ServerOps
+ENV container docker
+RUN yum -y update && yum clean all
+RUN yum install git python3 openssh-server openssh-clients -y
 CMD systemctl start sshd && systemctl status sshd
-WORKDIR /usr/src/DBops
-COPY . ./DBops
-ENTRYPOINT ["python3", "service/server/run.py"]
+WORKDIR /ServerOps
+COPY . ./ServerOps
 EXPOSE 22
+ENTRYPOINT ["python3", "service/server/run.py"]
