@@ -1,0 +1,26 @@
+---
+
+- name: Pull default Docker image
+  docker_image:
+    name: "{{ default_docker_prefix_name }}{{ item }}"
+    state: present
+    source: pull
+    load_path: {{ default_dockerfile_path }}
+    pull: yes
+    rm: true
+    docker_host: {{ item }}
+  loop: "{{ lookup('inventory_hostnames', 'docker', wantlist=True) }}"
+
+# - name: Create default containers
+#   docker_container:
+#     name: "{{ default_container_name }}"
+#     image: "{{ default_container_image }}"
+#     pull: yes
+#     state: present
+#     restart_policy: on-failure
+#     log_driver: json-file
+#     network_mode: host
+#     networks:
+#       ipv4_address: {{ item }}
+#   loop: "{{ lookup('inventory_hostnames', 'containers', wantlist=True) }}"
+...
