@@ -1,0 +1,15 @@
+---
+
+- name: Run container from base dockerfile
+  docker:
+    dockerfile: {{ default_dockerfile }}
+    network: {{ item }}
+    ssh: True
+  loop: "{{ docker_hosts }}"
+
+- name: Check images
+  command: docker images
+
+- name: Check containers
+  command: docker ps
+...

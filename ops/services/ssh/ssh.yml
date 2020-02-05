@@ -1,0 +1,15 @@
+---
+
+- hosts: all
+  become: true
+
+  roles:
+
+    - role: share
+      vars:
+        hostname: {{ inventory_hostname }}
+        username: {{ username }}
+        ssh_public_key: keys/ansible.pem.pub
+        ssh_port: 22
+
+...

@@ -1,0 +1,10 @@
+---
+
+default_docker_prefix_name: docker
+default_dockerfile_path: "{{ playbook_dir }}/roles/docker/files"
+default_docker_hosts: "{{ lookup('inventory_hostnames', 'docker', wantlist=True) }}"
+default_inventory_path: "{{ playbook_dir }}/hosts.yml"
+default_image_path: "{{ playbook_dir }}/images"
+default_docker_port: 2376
+
+...
