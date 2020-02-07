@@ -15,7 +15,7 @@
 
   roles:
 
-    - role: docker
+    - role: docker_deploy
       vars:
         network: "{{ docker_hosts }}"
 

@@ -1,7 +1,7 @@
 ---
 
 default_docker_prefix_name: docker
-default_dockerfile_path: "{{ playbook_dir }}/roles/docker/files"
+default_dockerfile_path: "{{ playbook_dir }}/layers/base/base.Dockerfile"
 default_docker_hosts: "{{ lookup('inventory_hostnames', 'docker', wantlist=True) }}"
 default_inventory_path: "{{ playbook_dir }}/hosts.yml"
 default_image_path: "{{ playbook_dir }}/images"

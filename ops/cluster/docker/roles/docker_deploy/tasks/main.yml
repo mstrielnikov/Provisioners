@@ -2,8 +2,8 @@
 
 - name: Run container from base dockerfile
   docker:
-    dockerfile: {{ default_dockerfile }}
-    network: {{ item }}
+    dockerfile: "{{ default_dockerfile_path }}"
+    network: "{{ item }}"
     ssh: True
   loop: "{{ docker_hosts }}"
 

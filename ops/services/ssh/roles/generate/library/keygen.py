@@ -75,7 +75,7 @@ def run_module():
 
     if mod != 0 or mod is not None:
         try:
-            chmod("{0}.{1}".format(path, extension), 500)
+            chmod("{0}.{1}".format(path, extension), mod)
         except PermissionError:
             module.fail_json(msg="Permissions denied on %s" % path, **result)
             module.exit_json(**result)
