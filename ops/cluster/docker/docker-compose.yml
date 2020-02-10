@@ -1,0 +1,15 @@
+version: '3'
+services:
+  base:
+    build:
+      context: ./layers/base
+      dockerfile: roles/deploy/files/Dockerfile
+      args:
+        buildno: 3
+      resources:
+        limits:
+          cpus: '0.01'
+          memory: 50M
+      networks:
+        default:
+          driver: overlay

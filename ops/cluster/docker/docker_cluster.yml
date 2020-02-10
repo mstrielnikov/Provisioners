@@ -1,22 +1,17 @@
 ---
 
-# vars_prompt:
-#   - name: "ansible_sudo_pass"
-#     prompt: "Sudo password"
-#     private: yes
+- vars:
+    host: {{ default_host }}
 
-- hosts: localhost
-  connection: local
+
+- hosts: {{ host }}
+#  connection: local
   gather_facts: True
-  strategy: debug
   # gather_subset: network,virtual
-  # any_errors_fatal: true
-  # become: True
+  # strategy: debug
+  any_errors_fatal: true
 
   roles:
-
-    - role: docker_deploy
-      vars:
-        network: "{{ docker_hosts }}"
+    - role: deploy
 
 ...

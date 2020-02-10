@@ -1,0 +1,27 @@
+---
+
+- name: Check docker installation
+  package:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg2
+      - software-properties-common
+      - docker-ce
+    state: present
+
+- name: Check docker compose
+  shell: curl -L "https://github.com/docker/compose/releases/download/latest/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose && ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+- name: Run docker compose
+  docker_compose:
+    project_src: "{{ default_compose_path }}"
+
+- name: Check images
+  command: docker images
+
+- name: Check containers
+  command: docker ps
+
+...

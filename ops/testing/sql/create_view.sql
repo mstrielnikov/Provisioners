@@ -1,3 +1,0 @@
-CREATE OR REPLACE VIEW ordered_names AS
-SELECT DISTINCT name FROM owner;
-SHOW CREATE VIEW ordered_names\G;

@@ -1,0 +1,11 @@
+---
+
+- name: deploy_ssh
+  ssh:
+    hostname: "{{ inventory_hostname }}"
+    username: "{{ deploy_user }}"
+    password: "{{ password }}"
+    ssh_public_key: resources/ssh/ansible.pub.pem
+    ssh_port: 22
+
+...

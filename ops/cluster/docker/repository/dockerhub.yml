@@ -1,7 +1,0 @@
-
-
-roles:
-  - role: cluster
-    vars:
-      cluster_type: dockerhub
-      managed_by: none
