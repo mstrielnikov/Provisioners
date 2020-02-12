@@ -1,8 +1,0 @@
----
-
-default_container_name: docker
-default_container_image: centos
-cluster_type: docker
-managed_by: none
-
-...

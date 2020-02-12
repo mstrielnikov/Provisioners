@@ -2,8 +2,8 @@ version: '3'
 services:
   base:
     build:
-      context: ./layers/base
-      dockerfile: roles/deploy/files/Dockerfile
+      context: ./roles/deploy/files
+      dockerfile: Dockerfile
       args:
         buildno: 3
       resources:

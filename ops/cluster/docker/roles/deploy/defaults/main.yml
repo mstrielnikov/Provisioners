@@ -1,11 +1,5 @@
 ---
 
-default_template_path: "{{ playbook_dir }}/templates/docker-compose.j2"
-default_compose_path: "{{ playbook_dir }}/docker-compose.yml"
-default_docker_hosts: "{{ lookup('inventory_hostnames', 'docker', wantlist=True) }}"
 default_inventory_path: "{{ playbook_dir }}/hosts.yml"
-default_docker_prefix_name: docker
-default_docker_port: 2376
-default_host: localhost
 
 ...

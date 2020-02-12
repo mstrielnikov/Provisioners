@@ -1,22 +1,18 @@
 ---
 
-- name: Check docker installation
-  package:
-    name:
-      - apt-transport-https
-      - ca-certificates
-      - curl
-      - gnupg2
-      - software-properties-common
-      - docker-ce
-    state: present
-
-- name: Check docker compose
-  shell: curl -L "https://github.com/docker/compose/releases/download/latest/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && chmod +x /usr/local/bin/docker-compose && ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+- name: Ensure Docker is started and enabled at boot.
+  service:
+    name: docker
+    state: started
+    enabled: true
 
 - name: Run docker compose
   docker_compose:
-    project_src: "{{ default_compose_path }}"
+    project_src: "docker-compose.yml"
+  register: output
+
+- debug:
+    var: output
 
 - name: Check images
   command: docker images

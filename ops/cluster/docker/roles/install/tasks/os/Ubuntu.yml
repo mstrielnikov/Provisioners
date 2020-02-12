@@ -1,0 +1,14 @@
+---
+
+- name: Ubuntu Check docker installation
+  package:
+    name:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg2
+      - software-properties-common
+      - docker-ce
+    state: present
+
+...

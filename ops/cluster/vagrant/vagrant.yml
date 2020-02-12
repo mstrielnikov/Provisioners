@@ -6,7 +6,6 @@
   any_errors_fatal: true
 
   roles:
-    - install
     - deploy
 
 ...
