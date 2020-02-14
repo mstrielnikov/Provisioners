@@ -6,16 +6,14 @@
     state: started
     enabled: true
 
-- name: Run docker compose
-  docker_compose:
-    project_src: "docker-compose.yml"
-  register: output
-
-- debug:
-    var: output
+- name: Build docker compose
+  command: docker-compose build
 
 - name: Check images
   command: docker images
+
+- name: Create container
+  command: docker container create docker_base
 
 - name: Check containers
   command: docker ps

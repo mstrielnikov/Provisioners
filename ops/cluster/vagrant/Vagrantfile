@@ -1,29 +1,30 @@
 VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
-  config.vm.box = "Centos8"
+  config.vm.box = "hashicorp/bionic64"
+#   libvirt.connect_via_ssh = false
+#   libvirt.username = "root"
   config.ssh.insert_key = false
 
   config.vm.provider :virtualbox do |v|
-    v.name = "lamp"
-    v.memory = 512
-    v.cpus = 2
-    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-    v.customize ["modifyvm", :id, "--ioapic", "on"]
+#     libvirt.name = "server"
+#     libvirt.host = "server.com"
+     v.memory = 512
+     v.cpus = 1
   end
 
-  config.vm.hostname = "lamp"
+  config.vm.hostname = "server"
   config.vm.network :private_network, ip: "192.168.33.33"
 
   # Set the name of the VM. See: http://stackoverflow.com/a/17864388/100134
-  config.vm.define :lamp do |lamp|
-  end
+#   config.vm.define :server do |server|
+#   end
 
   # Ansible provisioner.
-  config.vm.provision "ansible" do |ansible|
+    config.vm.provision "ansible" do |ansible|
     ansible.compatibility_mode = "2.0"
-    ansible.playbook = "provisioning/playbook.yml"
-    ansible.inventory_path = "provisioning/inventory"
+    ansible.playbook = "vagrant.yml"
+    ansible.inventory_path = "hosts.yml"
     ansible.become = true
   end
 

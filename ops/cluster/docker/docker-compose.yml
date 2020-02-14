@@ -2,14 +2,14 @@ version: '3'
 services:
   base:
     build:
-      context: ./roles/deploy/files
+      context: roles/deploy/files
       dockerfile: Dockerfile
       args:
         buildno: 3
-      resources:
-        limits:
-          cpus: '0.01'
-          memory: 50M
-      networks:
-        default:
-          driver: overlay
+#        resources:
+#          limits:
+#            cpus: 0.01
+#            memory: 50M
+#      networks:
+#        default:
+#          driver: overlay
