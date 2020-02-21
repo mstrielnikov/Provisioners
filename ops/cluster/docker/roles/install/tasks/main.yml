@@ -1,9 +1,0 @@
----
-
-- name: Fetch distro dependencies
-  include: "os/{{ ansible_distribution }}.yml"
-
-- name: Configure docker
-  include: "compose.yml"
-
-...

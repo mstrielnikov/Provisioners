@@ -1,5 +1,0 @@
----
-
-default_inventory_path: "{{ playbook_dir }}/hosts.yml"
-
-...
