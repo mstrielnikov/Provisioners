@@ -1,0 +1,8 @@
+---
+
+hostname: 127.0.0.1
+username: {{ ansible_user }}
+ssh_port: 22
+ssh_public_key: keys/ansible.pem.pub
+
+...
