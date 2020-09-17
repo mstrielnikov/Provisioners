@@ -1,0 +1,3 @@
+SELINUX=<%= $enabled -%>
+SELINUXTYPE=<%= $type -%>
+SETLOCALDEFS=<%= $localdefs -%>
