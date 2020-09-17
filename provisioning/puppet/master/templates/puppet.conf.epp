@@ -1,0 +1,13 @@
+[master]
+vardir = /opt/puppetlabs/server/data/puppetserver
+logdir = /var/log/puppetlabs/puppetserver
+rundir = /var/run/puppetlabs/puppetserver
+pidfile = /var/run/puppetlabs/puppetserver/puppetserver.pid
+codedir = /etc/puppetlabs/code
+dns_alt_names = <%= $puppet_server_fqdn -%>
+
+[main]
+certname = <%= $puppet_server_fqdn -%>
+server = <%= $puppet_server_fqdn -%>
+environment = production
+runinterval = 15m

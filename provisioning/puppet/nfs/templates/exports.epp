@@ -1,0 +1,5 @@
+/var/mc/local/logs        <%= $nfs_network -%>/<%= $nfs_network_mask -%>(rw)
+/var/mc/local/services    <%= $nfs_network -%>/<%= $nfs_network_mask -%>(rw)
+/var/mc/local/templates   <%= $nfs_network -%>/<%= $nfs_network_mask -%>(ro)
+/var/mysql/data           <%= $nfs_network -%>/<%= $nfs_network_mask -%>(rw)
+/var/mysql/snapshot       <%= $nfs_network -%>/<%= $nfs_network_mask -%>(rw)
