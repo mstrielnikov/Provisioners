@@ -2,15 +2,14 @@ BASE_IMAGE = "fewpixels/Ubuntu20base"
 PROVIDER = "virtualbox"
 VERSION = "0.2"
 
-BASH_PATH = "vagrant/provisioners/bash/"
-PUPPET_PATH = "vagrant/provisioners/puppet"
+BASH_PATH = "provisioning/scripts/"
+PUPPET_PATH = "provisioning/puppet/"
 
 GAME_NODES = 2
 MYSQL_NODES = 2
 
 Vagrant.configure("2") do |config|
-  config.vm.synced_folder ".", "/vagrant", disabled: false
-  #config.vm.synced_folder "./modules", "/vagrant"
+  config.vm.synced_folder ".", "/vagrant", disabled: true
   #config.vm.box_check_update = true
   #config.ssh.insert_key = false
   #config.ssh.private_key_path ="./authorized_keys"
