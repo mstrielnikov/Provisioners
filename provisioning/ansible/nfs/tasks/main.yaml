@@ -1,0 +1,40 @@
+- name: Install nfs components
+  package:
+    state: present
+    name: nfs-kernel-server
+
+- name: Up NFS interface
+
+
+- name: Create filesystem
+  file:
+    path: {{ item }}
+    state: directory
+    owner: root
+    group: root
+    mode: 0700
+  with_items:
+    - {{ directories }}
+
+- name: Mount filesystem
+  mount:
+    src: {{ item }}
+    path: "/var/{{ item }}"
+    state: mounted
+  with_items:
+    - {{ directories }}
+
+
+- name: Check firewall
+  ufw:
+    to_port: 2049
+    from_ip: any
+    dirrection: incoming
+    rule: allow
+    proto: tcp
+
+- name: Enable nfs-service
+  service:
+    name: nfs-kernel-server
+    state: restarted
+    enabled: yes

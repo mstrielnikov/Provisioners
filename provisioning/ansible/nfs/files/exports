@@ -1,0 +1,5 @@
+/var/mc/local/logs        10.1.1.2/255.255.255.0(rw)
+/var/mc/local/services    10.1.1.2/255.255.255.0(rw)
+/var/mc/local/templates   10.1.1.2/255.255.255.0(ro)
+/var/mysql/data           10.1.1.2/255.255.255.0(rw)
+/var/mysql/snapshot       10.1.1.2/255.255.255.0(rw)
