@@ -1,0 +1,5 @@
+- name: Enable mysql-server service
+  service:
+    name: postgres
+    state: restarted
+    enabled: yes
