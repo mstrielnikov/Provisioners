@@ -1,0 +1,3 @@
+{% for entry in postgresql_hba_entries %}
+{{ entry.type }} {{ entry.database }} {{ entry.user }} {{ entry.address }} {{ client.ip_address }} {{ client.ip_mask|default('') }} {{ client.auth_method }} {{ client.auth_options }}
+{% endfor %}

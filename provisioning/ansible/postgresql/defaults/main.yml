@@ -1,0 +1,27 @@
+postgresql_user: postgres
+postgresql_group: postgres
+postqgresql_port: 5432
+version: 13
+postgresql_config_path: /etc/postgresql/{{version}}/main
+postgresql_socket_directories: /var/run/
+postgresql_backup_directory: /var/backup/
+backup_filename_format: "{{ ansible_hostname }}-%a.pgdump"
+
+
+postgresql_conf_entries:
+  - { option: logging_collector, value: on}
+  - { option: log_connections, value: on}
+  - { option: log_disconnections, value: on}
+  - { option: log_duration,  value: on}
+  - { option: log_line_prefix,  value: "%t %u %d %h"}
+  - { option: password_encryption, value: on}
+  - { option: config_entry_ssl, value: off}
+  - { option: config_entry_ssl_ciphers, value: "ALL:!ADH:!LOW:!EXP:!MD5:@STRENGTH"}
+
+postgresql_hba_entries:
+  - {type: local, database: all, user: postgres, auth_method: peer}
+  - {type: local, database: all, user: all, auth_method: peer}
+  - {type: host, database: all, user: all, address: '127.0.0.1/32', auth_method: md5}
+  - {type: host, database: all, user: all, address: '::1/128', auth_method: md5}
+
+ip_allow: []
