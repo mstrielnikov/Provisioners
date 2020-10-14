@@ -6,7 +6,7 @@
     group: {{nfs_group}}
     mode: 0700
   with_items:
-    - {{ directories }}
+    - {{ exportfs.*.dir }}
 
 - name: Mount filesystem
   mount:
@@ -14,4 +14,4 @@
     path: "/nfs/{{ item }}"
     state: mounted
   with_items:
-    - {{ directories }}
+    - {{ exportfs.*.dir }}
