@@ -1,0 +1,17 @@
+- name: Create filesystem
+  file:
+    path: {{ item }}
+    state: directory
+    owner: {{nfs_user}}
+    group: {{nfs_group}}
+    mode: 0700
+  with_items:
+    - {{ directories }}
+
+- name: Mount filesystem
+  mount:
+    src: {{ item }}
+    path: "/nfs/{{ item }}"
+    state: mounted
+  with_items:
+    - {{ directories }}
