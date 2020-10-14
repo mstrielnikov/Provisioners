@@ -15,3 +15,11 @@
     state: mounted
   with_items:
     - {{ exportfs.*.dir }}
+
+- name: Configure general settings
+  template:
+    src: "{{module_path}}/exports.j2"
+    dest: "{{ nfs_exportfs_path }}/exports"
+    owner: root
+    group: root
+    mode: 0600
