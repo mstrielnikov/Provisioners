@@ -1,0 +1,13 @@
+- name: Create backup directory
+  file:
+    path: "{{ postgresql_backup_dir }}"
+    group: root
+    group: 600
+    state: directory
+
+- name: Postgresql backup cron job
+  cron:
+    name: "backup postresql content"
+    job: present
+    hour: "*/6"
+    command: 'postgres -c "/usr/bin/pg_dumpall" -f "{{ postgresql_backup_directory | quote }}/$(date +{{ postgresql_backup_filename_format | quote }}).tmp\"'
