@@ -1,0 +1,17 @@
+- name: Create backup directory
+  file:
+    path: "{{ mongodb_backup_dir }}"
+    group: root
+    group: 600
+    state: directory
+
+- block:
+  - name: MongoDB backup cron job
+    cron:
+      name: "Create MongoDB backup content cron for {{item}}"
+      job: present
+      hour: "*/6"
+      command: "mongodump --host {{item}}"
+    with_items: mongodbs
+  when: mongodbs | length > 0
+  

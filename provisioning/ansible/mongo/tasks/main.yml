@@ -1,0 +1,14 @@
+- name: Install MongoDB
+  import_tasks: install.yaml"
+
+- name: Config MongoDB
+  import_tasks: config.yaml"
+
+- name: Firewall for MongoDB
+  import_tasks: firewall.yaml" 
+  
+- name: Deploy databases
+  import_tasks: databases.yaml"
+
+- name: Backup MongoDB
+  import_tasks: backup.yaml"

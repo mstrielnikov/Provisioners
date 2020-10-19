@@ -1,0 +1,64 @@
+mongodb_repo:
+  package: mongodb-org
+  url: "https://repo.mongodb.org/apt/ubuntu"
+  key: https://www.mongodb.org/static/pgp/server-4.4.asc
+  version: "focal/{{mongo_package}}/4.4 multiverse"
+  arch: "[ arch=amd64,arm64 ]"
+
+mongodb_port: 27017
+mongodb_log: /var/log/mongodb/mongod.log
+
+mongodb_net_bindip: 127.0.0.1                    # Comma separated list of ip addresses to listen on
+mongodb_net_http_enabled: false                  # Enable http interface
+mongodb_net_ipv6: false                          # Enable IPv6 support (disabled by default)
+mongodb_net_maxconns: 65536                      # Max number of simultaneous connections
+mongodb_net_port: 27017                          # Specify port number
+mongodb_net_ssl: disabled                        # Enable or disable ssl connections
+mongodb_net_ssl_mode: ""                         # Set the ssl mode (RequireSSL / preferSSL / AllowSSL / disabled)
+mongodb_net_ssl_pemfile: ""                      # Location of the pemfile to use for ssl
+mongodb_net_ssl_host: ""                         # Valid ssl hostname
+
+## security Options
+mongodb_security_authorization: "disabled"
+mongodb_security_keyfile: /etc/mongodb-keyfile   # Specify path to keyfile with password for inter-process authentication
+mongodb_security_javascript_enabled: false
+
+## storage Options
+mongodb_storage_dbpath: /data/db                 # Directory for datafiles
+mongodb_storage_dirperdb: false                  # Use one directory per DB
+
+# The storage engine for the mongod database
+mongodb_storage_engine: "wiredTiger"
+# mmapv1 specific options
+mongodb_storage_quota_enforced: false            # Limits each database to a certain number of files
+mongodb_storage_quota_maxfiles: 8                # Number of quota files per DB
+mongodb_storage_smallfiles: false                # Very useful for non-data nodes
+
+mongodb_storage_journal_enabled: true            # Enable journaling
+mongodb_storage_prealloc: true                   # Enable data file preallocation
+
+mongodb_wiredtiger_directory_for_indexes: false
+
+## systemLog Options
+## The destination to which MongoDB sends all log output. Specify either 'file' or 'syslog'.
+## If you specify 'file', you must also specify mongodb_systemlog_path.
+mongodb_systemlog_destination: "file"
+mongodb_systemlog_logappend: true                                        # Append to logpath instead of over-writing
+mongodb_systemlog_logrotate: "rename"                                    # Logrotation behavior
+mongodb_systemlog_path: /var/log/mongodb/{{ mongodb_daemon_name }}.log   # Log file to send write to instead of stdout
+
+## operationProfiling Options
+mongodb_operation_profiling_slow_op_threshold_ms: 100
+mongodb_operation_profiling_mode: "off"
+
+## cloud options (MongoDB >= 4.0)
+mongodb_cloud_monitoring_free_state: "runtime"
+
+## replication Options
+mongodb_replication_replset: ""                   # Enable replication
+mongodb_replication_replindexprefetch: "all"      # specify index prefetching behavior (if secondary) [none|_id_only|all]
+mongodb_replication_oplogsize: 1024               # specifies a maximum size in megabytes for the replication operation log
+
+mongodb_set_parameters: []
+
+ip_allow: []

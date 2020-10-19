@@ -1,0 +1,31 @@
+- name: Ensure dependencies are installed
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - gnupg
+    - wget
+
+- name: download sources
+  command: "wget -qO {{mongodb_repo.key}} | apt-key add -"
+
+- name: Add APT repository
+  apt_repository:
+    repo: "deb {{mongodb_repo.arch}} {{mongodb_repo.url}} {{mongodb_repo.version}}"
+    update_cache: true
+
+- name: Install MongoDB packages and dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+
+- name: Install PyMongo from PIP
+  pip:
+    name: pymongo
+    state: "present"
+
+- name: Enable mongod service
+  service:
+    state: present
+    enabled: yes
+  

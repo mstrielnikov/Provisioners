@@ -1,0 +1,20 @@
+- name: create mongodb group
+  group:
+    name: "{{ mongodb_user }}"
+    state: present
+
+- name: create mongodb user
+  user:
+    name: "{{ mongodb_user }}"
+    group: "{{ mongodb_user }}"
+    state: present
+
+- name: Configure general settings
+  template:
+    src: mongod.j2
+    dest: /etc/mongod.conf
+    backup: true
+    owner: root
+    group: root
+    mode: 0644
+  

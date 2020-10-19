@@ -1,0 +1,19 @@
+- name: Check firewall incoming traffic
+  ufw:
+    to_port: {{mongodb_net_port}}
+    from_ip: {{ip_allow}}
+    dirrection: incoming
+    rule: allow
+    proto: tcp
+  with_item:
+    - {{ ip_allow }}
+
+- name: Check firewall outgoing traffic
+  ufw:
+    to_port: {{mongodb_net_port}}
+    to_ip: {{ip_allow}}
+    dirrection: outgoing
+    rule: allow
+    proto: tcp
+  with_item:
+    - {{ ip_allow }}
