@@ -1,0 +1,12 @@
+nfs_user: nobody
+nfs_group: nobody
+nfs_port: 2049
+nfs_exportfs_path: /etc
+
+eportfs:
+  - { dir: /var/local/logs, ip: "10.1.2.0", mask: "255.255.255.0", perm: rw }
+  - { dir: /var/local/services, ip: "10.1.3.0", mask: "255.255.255.0", perm: ro }
+
+ip_allow:
+  - "10.1.2.1"
+  - "10.1.3.1"

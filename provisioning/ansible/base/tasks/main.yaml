@@ -1,0 +1,18 @@
+- name: Update apt-get repo and cache
+  apt: force_apt_get=yes
+  
+- name: Upgrade all apt packages
+  apt: upgrade=dist force_apt_get=yes
+  
+- name: Install dependencies
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - gnupg
+    - wget
+    - curl
+    - build-essential
+    - python-dev
+    - python-setuptools
+    - python-pip
