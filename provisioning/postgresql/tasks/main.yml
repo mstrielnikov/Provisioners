@@ -1,0 +1,14 @@
+- name: Install PostgreSQL
+  import_tasks: "install.yaml"
+
+- name: Firewall for PostgreSQL
+  import_tasks: "firewall.yaml"
+
+- name: Config PostgreSQL
+  import_tasks: "config.yaml"
+
+- name: Backup PostgreSQL
+  import_tasks: "backup.yaml"
+    
+- name: Deploy databases
+  import_tasks: "databases.yaml"
